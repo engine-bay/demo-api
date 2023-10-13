@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{2506F1F5-82F5-4E8A-90B0-BC09CDA1709C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineBay.DemoApi", "api\EngineBay.DemoApi\EngineBay.DemoApi.csproj", "{FA736335-17FF-4979-B0BB-5A4CC4ABD1AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineBay.DemoApi.Tests", "api\EngineBay.DemoApi.Tests\EngineBay.DemoApi.Tests.csproj", "{58F35159-F3C0-4891-AC49-3B6FA9CC3A4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA736335-17FF-4979-B0BB-5A4CC4ABD1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA736335-17FF-4979-B0BB-5A4CC4ABD1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA736335-17FF-4979-B0BB-5A4CC4ABD1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA736335-17FF-4979-B0BB-5A4CC4ABD1AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F35159-F3C0-4891-AC49-3B6FA9CC3A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F35159-F3C0-4891-AC49-3B6FA9CC3A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F35159-F3C0-4891-AC49-3B6FA9CC3A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F35159-F3C0-4891-AC49-3B6FA9CC3A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FA736335-17FF-4979-B0BB-5A4CC4ABD1AD} = {2506F1F5-82F5-4E8A-90B0-BC09CDA1709C}
+		{58F35159-F3C0-4891-AC49-3B6FA9CC3A4B} = {2506F1F5-82F5-4E8A-90B0-BC09CDA1709C}
+	EndGlobalSection
+EndGlobal
