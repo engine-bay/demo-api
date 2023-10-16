@@ -5,17 +5,30 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-            "name": ".NET Core Launch (console)",
+            "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/EngineBay.ModuleTemplate.Tests/bin/Debug/net7.0/EngineBay.ModuleTemplate.Tests.dll",
+            "program": "${workspaceFolder}/EngineBay.DemoApi/bin/Debug/net7.0/EngineBay.DemoApi.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/EngineBay.ModuleTemplate.Tests",
-            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
-            "console": "internalConsole",
-            "stopAtEntry": false
+            "cwd": "${workspaceFolder}/EngineBay.DemoApi",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5050",
+                "DATABASE_RESET": "true",
+                "DATABASE_RESEED": "true",
+                "DATABASE_PROVIDER": "InMemory",
+                "AUTHENTICATION_METHOD": "Basic",
+                "AUTHENTICATION_AUDIENCE": "http://localhost:5050",
+                "AUTHENTICATION_ISSUER": "http://localhost:5050",
+                "AUTHENTICATION_VALIDATE_ISSUER_SIGNING_KEY": "false",
+                "API_DOCUMENTATION_ENABLED": "true",
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
         },
         {
             "name": ".NET Core Attach",
