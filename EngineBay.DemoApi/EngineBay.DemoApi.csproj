@@ -2,16 +2,26 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
+        <RootNamespace>EngineBay.DemoApi</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageId>EngineBay.DemoApi</PackageId>
+        <Version>0.0.0</Version>
+        <Authors>EngineBay</Authors>
+        <Company>EngineBay</Company>
+        <PackageProjectUrl>https://github.com/engine-bay/demo-api</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/engine-bay/demo-api</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
 
     <PropertyGroup>
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <ServerGarbageCollection>false</ServerGarbageCollection>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <IsTrimmable>false</IsTrimmable>
+        <PublishTrimmed>false</PublishTrimmed>
+        <ServerGarbageCollection>false</ServerGarbageCollection>
     </PropertyGroup>
 
     <Choose>
