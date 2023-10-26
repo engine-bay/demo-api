@@ -1,4 +1,4 @@
-namespace EngineBay.CommunityEdition
+namespace EngineBay.DemoApi
 {
     using EngineBay.Authentication;
     using EngineBay.Core;

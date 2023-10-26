@@ -29,6 +29,8 @@ namespace EngineBay.DemoApi
 
             app.AddModuleMiddleware();
 
+            app.InitializeDatabase();
+
             app.Run();
         }
     }
