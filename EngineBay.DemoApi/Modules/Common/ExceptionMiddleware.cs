@@ -55,7 +55,7 @@ namespace EngineBay.DemoApi
                             Status = context.Response.StatusCode,
                             Instance = $"{protocol}{context.Request.Host}{context.Request.Path}",
                         },
-                    }).ConfigureAwait(false);
+                    });
                 }
             };
         }
