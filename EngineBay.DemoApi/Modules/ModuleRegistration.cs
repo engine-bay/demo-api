@@ -3,6 +3,7 @@ namespace EngineBay.DemoApi
     using System.Collections.Generic;
     using System.Linq;
     using EngineBay.ApiDocumentation;
+    using EngineBay.Auditing;
     using EngineBay.Authentication;
     using EngineBay.Core;
     using EngineBay.Cors;
@@ -105,6 +106,7 @@ namespace EngineBay.DemoApi
                 new LoggingModule(),
                 new CorsModule(),
                 new AuthenticationModule(),
+                new AuditingModule(),
             };
 
             Console.WriteLine($"Discovered {modules.Count} EngineBay modules");
