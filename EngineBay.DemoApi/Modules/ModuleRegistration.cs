@@ -87,7 +87,6 @@ namespace EngineBay.DemoApi
         {
             var dbContexts = new List<IModuleDbContext>
             {
-                new DemoModuleDbContext(dbOptions),
                 new AuthenticationDbContext(dbOptions),
             };
 
