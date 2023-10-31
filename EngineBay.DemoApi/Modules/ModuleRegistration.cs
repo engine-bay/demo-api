@@ -3,6 +3,7 @@ namespace EngineBay.DemoApi
     using System.Collections.Generic;
     using System.Linq;
     using EngineBay.ApiDocumentation;
+    using EngineBay.Auditing;
     using EngineBay.Authentication;
     using EngineBay.Core;
     using EngineBay.Cors;
@@ -10,6 +11,7 @@ namespace EngineBay.DemoApi
     using EngineBay.DemoModule;
     using EngineBay.Logging;
     using EngineBay.Persistence;
+    using Microsoft.EntityFrameworkCore;
 
     public static class ModuleRegistration
     {
@@ -81,10 +83,21 @@ namespace EngineBay.DemoApi
             return app;
         }
 
+        public static IReadOnlyCollection<IModuleDbContext> GetRegisteredDbContexts(DbContextOptions<ModuleWriteDbContext> dbOptions)
+        {
+            var dbContexts = new List<IModuleDbContext>
+            {
+                new AuthenticationDbContext(dbOptions),
+            };
+
+            return dbContexts;
+        }
+
         private static IEnumerable<IModule> GetRegisteredModules()
         {
             var modules = new List<IModule>
             {
+                new DemoApiModule(),
                 new PersistenceModule(),
                 new DatabaseManagementModule(),
                 new DemoModuleModule(),
@@ -92,7 +105,7 @@ namespace EngineBay.DemoApi
                 new LoggingModule(),
                 new CorsModule(),
                 new AuthenticationModule(),
-                new DemoModuleModule(),
+                new AuditingModule(),
             };
 
             Console.WriteLine($"Discovered {modules.Count} EngineBay modules");

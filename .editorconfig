@@ -32,3 +32,6 @@ dotnet_diagnostic.CA2007.severity = silent
 [**/obj/**/*.cs]
 generated_code = true
 
+# Mark EF Migrations in this folder as generated code
+[EngineBay.DemoApi/Migrations/**/*.cs]
+generated_code = true
