@@ -96,15 +96,15 @@ namespace EngineBay.DemoApi
                 case DatabaseProviderTypes.InMemory:
                 case DatabaseProviderTypes.SQLite:
                     this.masterSqliteDb.Add(systemUser as ApplicationUser);
-                    this.masterSqliteDb.SaveChanges(systemUser);
+                    this.masterSqliteDb.SaveChanges();
                     break;
                 case DatabaseProviderTypes.SqlServer:
                     this.masterSqlServerDb.Add(systemUser as ApplicationUser);
-                    this.masterSqlServerDb.SaveChanges(systemUser);
+                    this.masterSqlServerDb.SaveChanges();
                     break;
                 case DatabaseProviderTypes.Postgres:
                     this.masterPostgresDb.Add(systemUser as ApplicationUser);
-                    this.masterPostgresDb.SaveChanges(systemUser);
+                    this.masterPostgresDb.SaveChanges();
 
                     break;
                 default:
