@@ -1,40 +1,48 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
+        <RootNamespace>EngineBay.DemoApi</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageId>EngineBay.DemoApi</PackageId>
+        <Version>0.0.0</Version>
+        <Authors>EngineBay</Authors>
+        <Company>EngineBay</Company>
+        <PackageProjectUrl>https://github.com/engine-bay/demo-api</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/engine-bay/demo-api</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
 
     <PropertyGroup>
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <ServerGarbageCollection>false</ServerGarbageCollection>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <IsTrimmable>false</IsTrimmable>
+        <PublishTrimmed>false</PublishTrimmed>
+        <ServerGarbageCollection>false</ServerGarbageCollection>
     </PropertyGroup>
 
     <Choose>
         <When Condition="'$(ASPNETCORE_ENVIRONMENT)' == 'Development'">
             <ItemGroup>
-                <ProjectReference
-                    Include="../../documentation-portal/EngineBay.DocumentationPortal/EngineBay.DocumentationPortal.csproj" />
-                <ProjectReference
-                    Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
-                <ProjectReference
-                    Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
+                <ProjectReference Include="../../auditing/EngineBay.Auditing/EngineBay.Auditing.csproj" />
+                <ProjectReference Include="../../documentation-portal/EngineBay.DocumentationPortal/EngineBay.DocumentationPortal.csproj" />
+                <ProjectReference Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
+                <ProjectReference Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
                 <ProjectReference Include="../../cors/EngineBay.Cors/EngineBay.Cors.csproj" />
-                <ProjectReference
-                    Include="../../demo-module/EngineBay.DemoModule/EngineBay.DemoModule.csproj" />
+                <ProjectReference Include="../../demo-module/EngineBay.DemoModule/EngineBay.DemoModule.csproj" />
             </ItemGroup>
         </When>
         <Otherwise>
             <ItemGroup>
-                <PackageReference Include="EngineBay.DocumentationPortal" Version="1.0.0" />
-                <PackageReference Include="EngineBay.ApiDocumentation" Version="1.0.0" />
-                <PackageReference Include="EngineBay.DatabaseManagement" Version="3.0.0" />
-                <PackageReference Include="EngineBay.Cors" Version="1.0.0" />
-                <PackageReference Include="EngineBay.DemoModule" Version="0.0.1" />
+                <PackageReference Include="EngineBay.Auditing" Version="0.0.2" />
+                <PackageReference Include="EngineBay.DocumentationPortal" Version="1.0.2" />
+                <PackageReference Include="EngineBay.ApiDocumentation" Version="1.0.3" />
+                <PackageReference Include="EngineBay.DatabaseManagement" Version="4.0.1" />
+                <PackageReference Include="EngineBay.Cors" Version="1.0.2" />
+                <PackageReference Include="EngineBay.DemoModule" Version="0.0.3" />
             </ItemGroup>
         </Otherwise>
     </Choose>
