@@ -28,21 +28,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TodoLists",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LastUpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TodoLists", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AuditEntries",
                 columns: table => new
                 {
@@ -50,6 +35,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     EntityName = table.Column<string>(type: "TEXT", nullable: false),
                     ActionType = table.Column<string>(type: "TEXT", nullable: false),
                     ApplicationUserId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ApplicationUserName = table.Column<string>(type: "TEXT", nullable: false),
                     EntityId = table.Column<string>(type: "TEXT", nullable: false),
                     Changes = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -58,12 +44,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AuditEntries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AuditEntries_ApplicationUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,11 +77,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuditEntries_ApplicationUserId",
-                table: "AuditEntries",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BasicAuthCredentials_ApplicationUserId",
                 table: "BasicAuthCredentials",
                 column: "ApplicationUserId",
@@ -116,9 +91,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
 
             migrationBuilder.DropTable(
                 name: "BasicAuthCredentials");
-
-            migrationBuilder.DropTable(
-                name: "TodoLists");
 
             migrationBuilder.DropTable(
                 name: "ApplicationUsers");
