@@ -63,6 +63,30 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                     b.ToTable("AuditEntries", (string)null);
                 });
 
+            modelBuilder.Entity("EngineBay.DemoModule.TodoList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TodoLists", (string)null);
+                });
+
             modelBuilder.Entity("EngineBay.Persistence.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")

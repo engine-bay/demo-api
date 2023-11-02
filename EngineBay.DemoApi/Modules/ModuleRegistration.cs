@@ -89,6 +89,7 @@ namespace EngineBay.DemoApi
             {
                 new AuthenticationDbContext(dbOptions),
                 new AuditingDbContext(dbOptions),
+                new DemoModuleDbContext(dbOptions),
             };
 
             return dbContexts;
@@ -106,6 +107,7 @@ namespace EngineBay.DemoApi
                 new CorsModule(),
                 new AuthenticationModule(),
                 new AuditingModule(),
+                new DemoModuleModule(),
             };
 
             Console.WriteLine($"Discovered {modules.Count} EngineBay modules");

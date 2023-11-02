@@ -29,12 +29,17 @@
             <ItemGroup>
                 <ProjectReference
                     Include="../../auditing/EngineBay.Auditing/EngineBay.Auditing.csproj" />
-                <ProjectReference Include="../../auditing/EngineBay.Auditing/EngineBay.Auditing.csproj" />
-                <ProjectReference Include="../../documentation-portal/EngineBay.DocumentationPortal/EngineBay.DocumentationPortal.csproj" />
-                <ProjectReference Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
-                <ProjectReference Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
+                <ProjectReference
+                    Include="../../auditing/EngineBay.Auditing/EngineBay.Auditing.csproj" />
+                <ProjectReference
+                    Include="../../documentation-portal/EngineBay.DocumentationPortal/EngineBay.DocumentationPortal.csproj" />
+                <ProjectReference
+                    Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
+                <ProjectReference
+                    Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
                 <ProjectReference Include="../../cors/EngineBay.Cors/EngineBay.Cors.csproj" />
-                <ProjectReference Include="../../demo-module/EngineBay.DemoModule/EngineBay.DemoModule.csproj" />
+                <ProjectReference
+                    Include="../../demo-module/EngineBay.DemoModule/EngineBay.DemoModule.csproj" />
             </ItemGroup>
         </When>
         <Otherwise>
@@ -44,7 +49,7 @@
                 <PackageReference Include="EngineBay.ApiDocumentation" Version="1.0.4" />
                 <PackageReference Include="EngineBay.DatabaseManagement" Version="4.0.1" />
                 <PackageReference Include="EngineBay.Cors" Version="1.0.3" />
-                <PackageReference Include="EngineBay.DemoModule" Version="0.0.4" />
+                <PackageReference Include="EngineBay.DemoModule" Version="0.1.0" />
             </ItemGroup>
         </Otherwise>
     </Choose>
