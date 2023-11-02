@@ -3,6 +3,7 @@ using System;
 using EngineBay.DemoApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
 {
     [DbContext(typeof(MasterSqliteDb))]
-    partial class MasterSqliteDbModelSnapshot : ModelSnapshot
+    [Migration("20231101201526_AddTodoListsTable")]
+    partial class AddTodoListsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
