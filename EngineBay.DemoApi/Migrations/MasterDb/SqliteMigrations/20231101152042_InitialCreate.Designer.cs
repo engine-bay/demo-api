@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
 {
     [DbContext(typeof(MasterSqliteDb))]
-    [Migration("20231026100249_InitialCreate")]
+    [Migration("20231101152042_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,28 +20,45 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
 
-            modelBuilder.Entity("EngineBay.DemoModule.TodoList", b =>
+            modelBuilder.Entity("EngineBay.Auditing.AuditEntry", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ActionType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ApplicationUserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Changes")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("EntityId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EntityName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("LastUpdatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
-                    b.ToTable("TodoLists", (string)null);
+                    b.ToTable("AuditEntries", (string)null);
                 });
 
             modelBuilder.Entity("EngineBay.Persistence.ApplicationUser", b =>
@@ -72,45 +89,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                         .IsUnique();
 
                     b.ToTable("ApplicationUsers", (string)null);
-                });
-
-            modelBuilder.Entity("EngineBay.Persistence.AuditEntry", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ActionType")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Changes")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EntityId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EntityName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LastUpdatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("AuditEntries", (string)null);
                 });
 
             modelBuilder.Entity("EngineBay.Persistence.BasicAuthCredential", b =>
@@ -147,17 +125,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                         .IsUnique();
 
                     b.ToTable("BasicAuthCredentials", (string)null);
-                });
-
-            modelBuilder.Entity("EngineBay.Persistence.AuditEntry", b =>
-                {
-                    b.HasOne("EngineBay.Persistence.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("EngineBay.Persistence.BasicAuthCredential", b =>

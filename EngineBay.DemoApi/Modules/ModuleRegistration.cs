@@ -88,6 +88,7 @@ namespace EngineBay.DemoApi
             var dbContexts = new List<IModuleDbContext>
             {
                 new AuthenticationDbContext(dbOptions),
+                new AuditingDbContext(dbOptions),
             };
 
             return dbContexts;
@@ -100,7 +101,6 @@ namespace EngineBay.DemoApi
                 new DemoApiModule(),
                 new PersistenceModule(),
                 new DatabaseManagementModule(),
-                new DemoModuleModule(),
                 new ApiDocumentationModule(),
                 new LoggingModule(),
                 new CorsModule(),

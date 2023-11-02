@@ -28,21 +28,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TodoLists",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    LastUpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TodoLists", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AuditEntries",
                 columns: table => new
                 {
@@ -50,6 +35,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                     EntityName = table.Column<string>(type: "text", nullable: false),
                     ActionType = table.Column<string>(type: "text", nullable: false),
                     ApplicationUserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ApplicationUserName = table.Column<string>(type: "text", nullable: false),
                     EntityId = table.Column<string>(type: "text", nullable: false),
                     Changes = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -58,12 +44,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AuditEntries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AuditEntries_ApplicationUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,11 +77,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuditEntries_ApplicationUserId",
-                table: "AuditEntries",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BasicAuthCredentials_ApplicationUserId",
                 table: "BasicAuthCredentials",
                 column: "ApplicationUserId",
@@ -116,9 +91,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
 
             migrationBuilder.DropTable(
                 name: "BasicAuthCredentials");
-
-            migrationBuilder.DropTable(
-                name: "TodoLists");
 
             migrationBuilder.DropTable(
                 name: "ApplicationUsers");
