@@ -1,7 +1,6 @@
 namespace EngineBay.DemoApi
 {
     using System.Collections.Generic;
-    using System.Linq;
     using EngineBay.ApiDocumentation;
     using EngineBay.Auditing;
     using EngineBay.Authentication;
@@ -85,12 +84,14 @@ namespace EngineBay.DemoApi
 
         public static IReadOnlyCollection<IModuleDbContext> GetRegisteredDbContexts(DbContextOptions<ModuleWriteDbContext> dbOptions)
         {
-            var dbContexts = new List<IModuleDbContext>
+            var dbContexts = new List<IModuleDbContext>();
+            foreach (var module in RegisteredModules)
             {
-                new AuthenticationDbContext(dbOptions),
-                new AuditingDbContext(dbOptions),
-                new DemoModuleDbContext(dbOptions),
-            };
+                if (module is IDatabaseModule)
+                {
+                    dbContexts.AddRange(((IDatabaseModule)module).GetRegisteredDbContexts(dbOptions));
+                }
+            }
 
             return dbContexts;
         }
