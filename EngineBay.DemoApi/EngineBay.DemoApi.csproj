@@ -44,7 +44,7 @@
                 <PackageReference Include="EngineBay.ApiDocumentation" Version="1.0.5" />
                 <PackageReference Include="EngineBay.DatabaseManagement" Version="4.0.2" />
                 <PackageReference Include="EngineBay.Cors" Version="1.0.3" />
-                <PackageReference Include="EngineBay.DemoModule" Version="0.1.1" />
+                <PackageReference Include="EngineBay.DemoModule" Version="0.2.1" />
             </ItemGroup>
         </Otherwise>
     </Choose>

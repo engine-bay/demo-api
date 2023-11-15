@@ -63,6 +63,41 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                     b.ToTable("AuditEntries", (string)null);
                 });
 
+            modelBuilder.Entity("EngineBay.DemoModule.TodoItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset?>("DueDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("ListId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ListId");
+
+                    b.ToTable("TodoItems", (string)null);
+                });
+
             modelBuilder.Entity("EngineBay.DemoModule.TodoList", b =>
                 {
                     b.Property<Guid>("Id")
@@ -153,6 +188,15 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                     b.ToTable("BasicAuthCredentials", (string)null);
                 });
 
+            modelBuilder.Entity("EngineBay.DemoModule.TodoItem", b =>
+                {
+                    b.HasOne("EngineBay.DemoModule.TodoList", null)
+                        .WithMany("TodoItems")
+                        .HasForeignKey("ListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("EngineBay.Persistence.BasicAuthCredential", b =>
                 {
                     b.HasOne("EngineBay.Persistence.ApplicationUser", "ApplicationUser")
@@ -162,6 +206,11 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("EngineBay.DemoModule.TodoList", b =>
+                {
+                    b.Navigation("TodoItems");
                 });
 #pragma warning restore 612, 618
         }
