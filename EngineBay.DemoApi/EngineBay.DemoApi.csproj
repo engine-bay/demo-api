@@ -28,8 +28,6 @@
         <When Condition="'$(ASPNETCORE_ENVIRONMENT)' == 'Development'">
             <ItemGroup>
                 <ProjectReference
-                    Include="../../documentation-portal/EngineBay.DocumentationPortal/EngineBay.DocumentationPortal.csproj" />
-                <ProjectReference
                     Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
                 <ProjectReference
                     Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
@@ -40,11 +38,10 @@
         </When>
         <Otherwise>
             <ItemGroup>
-                <PackageReference Include="EngineBay.DocumentationPortal" Version="1.0.7" />
                 <PackageReference Include="EngineBay.ApiDocumentation" Version="1.1.0" />
                 <PackageReference Include="EngineBay.DatabaseManagement" Version="4.0.2" />
                 <PackageReference Include="EngineBay.Cors" Version="1.0.3" />
-                <PackageReference Include="EngineBay.DemoModule" Version="0.2.1" />
+                <PackageReference Include="EngineBay.DemoModule" Version="0.3.0" />
             </ItemGroup>
         </Otherwise>
     </Choose>
