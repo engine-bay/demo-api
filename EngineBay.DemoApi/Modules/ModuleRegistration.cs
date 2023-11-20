@@ -1,7 +1,6 @@
 namespace EngineBay.DemoApi
 {
     using System.Collections.Generic;
-    using System.Linq;
     using EngineBay.ApiDocumentation;
     using EngineBay.Auditing;
     using EngineBay.Authentication;
@@ -15,11 +14,9 @@ namespace EngineBay.DemoApi
 
     public static class ModuleRegistration
     {
-        private static readonly List<IModule> RegisteredModules = new List<IModule>();
-
         public static IServiceCollection RegisterPolicies(this IServiceCollection services)
         {
-            foreach (var module in RegisteredModules)
+            foreach (var module in GetRegisteredModules())
             {
                 module.RegisterPolicies(services);
             }
@@ -29,11 +26,9 @@ namespace EngineBay.DemoApi
 
         public static IServiceCollection RegisterModules(this IServiceCollection services, IConfiguration configuration)
         {
-            var modules = GetRegisteredModules();
-            foreach (var module in modules)
+            foreach (var module in GetRegisteredModules())
             {
                 module.RegisterModule(services, configuration);
-                RegisteredModules.Add(module);
             }
 
             return services;
@@ -44,7 +39,7 @@ namespace EngineBay.DemoApi
             var basePath = "/api";
             var versionNumber = "v1";
 
-            foreach (var module in RegisteredModules)
+            foreach (var module in GetRegisteredModules())
             {
                 var routeGroupBuilder = app.MapGroup($"{basePath}/{versionNumber}");
 
@@ -56,7 +51,7 @@ namespace EngineBay.DemoApi
 
         public static WebApplication AddModuleMiddleware(this WebApplication app)
         {
-            foreach (var module in RegisteredModules)
+            foreach (var module in GetRegisteredModules())
             {
                 module.AddMiddleware(app);
             }
@@ -76,7 +71,7 @@ namespace EngineBay.DemoApi
             var serviceProvider = scope.ServiceProvider;
             var dbInitialiser = serviceProvider.GetRequiredService<DbInitialiser>();
 
-            dbInitialiser.Run(RegisteredModules);
+            dbInitialiser.Run(GetRegisteredModules());
 
             scope.Dispose();
 
@@ -85,12 +80,19 @@ namespace EngineBay.DemoApi
 
         public static IReadOnlyCollection<IModuleDbContext> GetRegisteredDbContexts(DbContextOptions<ModuleWriteDbContext> dbOptions)
         {
-            var dbContexts = new List<IModuleDbContext>
+            var dbContexts = new List<IModuleDbContext>();
+            foreach (var module in GetRegisteredModules())
             {
-                new AuthenticationDbContext(dbOptions),
-                new AuditingDbContext(dbOptions),
-                new DemoModuleDbContext(dbOptions),
-            };
+                if (module is IDatabaseModule)
+                {
+                    dbContexts.AddRange(((IDatabaseModule)module).GetRegisteredDbContexts(dbOptions));
+                }
+            }
+
+            foreach (IModuleDbContext context in dbContexts)
+            {
+                Console.WriteLine($"Registering DB Context - {context.GetType().Name}");
+            }
 
             return dbContexts;
         }
