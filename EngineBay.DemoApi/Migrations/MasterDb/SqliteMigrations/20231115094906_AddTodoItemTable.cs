@@ -20,7 +20,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     ListId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Completed = table.Column<bool>(type: "INTEGER", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    DueDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastUpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },

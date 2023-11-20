@@ -20,7 +20,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqlServerMigrations
                     ListId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Completed = table.Column<bool>(type: "bit", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DueDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "datetimeoffset", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

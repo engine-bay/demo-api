@@ -20,7 +20,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                     ListId = table.Column<Guid>(type: "uuid", nullable: false),
                     Completed = table.Column<bool>(type: "boolean", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    DueDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     LastUpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
