@@ -35,10 +35,7 @@ namespace EngineBay.DemoApi
 
         public void Run(IEnumerable<IModule> modules)
         {
-            if (modules is null)
-            {
-                throw new ArgumentNullException(nameof(modules));
-            }
+            ArgumentNullException.ThrowIfNull(modules);
 
             this.logger.InitializingDatabase();
 

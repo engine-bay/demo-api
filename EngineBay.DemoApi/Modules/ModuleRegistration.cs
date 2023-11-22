@@ -61,10 +61,7 @@ namespace EngineBay.DemoApi
 
         public static WebApplication InitializeDatabase(this WebApplication app)
         {
-            if (app is null)
-            {
-                throw new ArgumentNullException(nameof(app));
-            }
+            ArgumentNullException.ThrowIfNull(app);
 
             // Seed the database
             using var scope = app.Services.CreateScope();
