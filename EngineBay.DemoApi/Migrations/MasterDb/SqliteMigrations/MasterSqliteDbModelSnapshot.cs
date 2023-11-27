@@ -15,7 +15,22 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
+
+            modelBuilder.Entity("AuthUserRole", b =>
+                {
+                    b.Property<Guid>("RolesId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RolesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("AuthUserRole");
+                });
 
             modelBuilder.Entity("EngineBay.Auditing.AuditEntry", b =>
                 {
@@ -58,6 +73,158 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     b.ToTable("AuditEntries", (string)null);
                 });
 
+            modelBuilder.Entity("EngineBay.Authentication.AuthUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ApplicationUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LastUpdatedById")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("AuthUsers", (string)null);
+                });
+
+            modelBuilder.Entity("EngineBay.Authentication.BasicAuthCredential", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ApplicationUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LastUpdatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Salt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("BasicAuthCredentials", (string)null);
+                });
+
+            modelBuilder.Entity("EngineBay.Authentication.Group", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LastUpdatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Groups", (string)null);
+                });
+
+            modelBuilder.Entity("EngineBay.Authentication.Permission", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LastUpdatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permissions", (string)null);
+                });
+
+            modelBuilder.Entity("EngineBay.Authentication.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LastUpdatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles", (string)null);
+                });
+
             modelBuilder.Entity("EngineBay.DemoModule.TodoItem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -73,7 +240,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset?>("DueDate")
+                    b.Property<DateTime?>("DueDate")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("LastUpdatedAt")
@@ -147,40 +314,71 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     b.ToTable("ApplicationUsers", (string)null);
                 });
 
-            modelBuilder.Entity("EngineBay.Persistence.BasicAuthCredential", b =>
+            modelBuilder.Entity("GroupPermission", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("GroupsId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ApplicationUserId")
+                    b.Property<Guid>("PermissionsId")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.HasKey("GroupsId", "PermissionsId");
+
+                    b.HasIndex("PermissionsId");
+
+                    b.ToTable("GroupPermission");
+                });
+
+            modelBuilder.Entity("GroupRole", b =>
+                {
+                    b.Property<Guid>("GroupsId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("CreatedById")
+                    b.Property<Guid>("RolesId")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("LastUpdatedAt")
-                        .HasColumnType("TEXT");
+                    b.HasKey("GroupsId", "RolesId");
 
-                    b.Property<Guid?>("LastUpdatedById")
-                        .HasColumnType("TEXT");
+                    b.HasIndex("RolesId");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.ToTable("GroupRole");
+                });
 
-                    b.Property<string>("Salt")
-                        .HasColumnType("TEXT");
+            modelBuilder.Entity("AuthUserRole", b =>
+                {
+                    b.HasOne("EngineBay.Authentication.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasOne("EngineBay.Authentication.AuthUser", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
+            modelBuilder.Entity("EngineBay.Authentication.AuthUser", b =>
+                {
+                    b.HasOne("EngineBay.Persistence.ApplicationUser", "ApplicationUser")
+                        .WithOne()
+                        .HasForeignKey("EngineBay.Authentication.AuthUser", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.ToTable("BasicAuthCredentials", (string)null);
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("EngineBay.Authentication.BasicAuthCredential", b =>
+                {
+                    b.HasOne("EngineBay.Persistence.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("EngineBay.DemoModule.TodoItem", b =>
@@ -192,15 +390,34 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EngineBay.Persistence.BasicAuthCredential", b =>
+            modelBuilder.Entity("GroupPermission", b =>
                 {
-                    b.HasOne("EngineBay.Persistence.ApplicationUser", "ApplicationUser")
+                    b.HasOne("EngineBay.Authentication.Group", null)
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId")
+                        .HasForeignKey("GroupsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ApplicationUser");
+                    b.HasOne("EngineBay.Authentication.Permission", null)
+                        .WithMany()
+                        .HasForeignKey("PermissionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GroupRole", b =>
+                {
+                    b.HasOne("EngineBay.Authentication.Group", null)
+                        .WithMany()
+                        .HasForeignKey("GroupsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EngineBay.Authentication.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EngineBay.DemoModule.TodoList", b =>
