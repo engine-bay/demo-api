@@ -1,6 +1,7 @@
 namespace EngineBay.DemoApi
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using EngineBay.ApiDocumentation;
     using EngineBay.Auditing;
     using EngineBay.Authentication;
@@ -61,10 +62,7 @@ namespace EngineBay.DemoApi
 
         public static WebApplication InitializeDatabase(this WebApplication app)
         {
-            if (app is null)
-            {
-                throw new ArgumentNullException(nameof(app));
-            }
+            ArgumentNullException.ThrowIfNull(app);
 
             // Seed the database
             using var scope = app.Services.CreateScope();
@@ -97,23 +95,23 @@ namespace EngineBay.DemoApi
             return dbContexts;
         }
 
-        private static IEnumerable<IModule> GetRegisteredModules()
+        private static List<IModule> GetRegisteredModules()
         {
             var modules = new List<IModule>
             {
-                new DemoApiModule(),
                 new PersistenceModule(),
+                new DemoApiModule(),
                 new DatabaseManagementModule(),
-                new ApiDocumentationModule(),
+                new DemoModuleModule(),
                 new LoggingModule(),
                 new CorsModule(),
-                new AuthenticationModule(),
                 new AuditingModule(),
-                new DemoModuleModule(),
+                new ApiDocumentationModule(),
+                new AuthenticationModule(),
             };
 
             Console.WriteLine($"Discovered {modules.Count} EngineBay modules");
-            return modules;
+            return new List<IModule>(modules);
         }
     }
 }

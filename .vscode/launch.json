@@ -10,13 +10,15 @@
       "request": "launch",
       "preLaunchTask": "build",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/EngineBay.DemoApi/bin/Debug/net7.0/EngineBay.DemoApi.dll",
+      "program": "${workspaceFolder}/EngineBay.DemoApi/bin/Debug/net8.0/EngineBay.DemoApi.dll",
       "args": [],
       "cwd": "${workspaceFolder}/EngineBay.DemoApi",
       "stopAtEntry": false,
       "envFile": "${workspaceFolder}/.env",
       "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASE_PROVIDER": "SqlServer",
+        "DATABASE_CONNECTION_STRING": "data source=localhost\\sql1,1433;Database=sonarCMS;User Id=sa;Password=Highway1!Progress;Encrypt=False;"
       },
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
