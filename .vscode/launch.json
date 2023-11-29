@@ -10,7 +10,7 @@
       "request": "launch",
       "preLaunchTask": "build",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/EngineBay.DemoApi/bin/Debug/net7.0/EngineBay.DemoApi.dll",
+      "program": "${workspaceFolder}/EngineBay.DemoApi/bin/Debug/net8.0/EngineBay.DemoApi.dll",
       "args": [],
       "cwd": "${workspaceFolder}/EngineBay.DemoApi",
       "stopAtEntry": false,

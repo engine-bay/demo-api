@@ -15,6 +15,7 @@ namespace EngineBay.DemoApi
             var app = builder.Build();
 
             app.UseExceptionHandler();
+
             app.UseStatusCodePages();
             app.UseExceptionHandler(exceptionHandlerApp =>
             {
@@ -25,8 +26,6 @@ namespace EngineBay.DemoApi
 
             // Register health endpoint
             app.MapHealthChecks("/health");
-
-            app.UseStaticFiles();
 
             app.AddModuleMiddleware();
 

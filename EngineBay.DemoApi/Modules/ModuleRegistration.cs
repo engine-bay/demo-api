@@ -1,6 +1,7 @@
 namespace EngineBay.DemoApi
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using EngineBay.ApiDocumentation;
     using EngineBay.Auditing;
     using EngineBay.Authentication;
@@ -94,23 +95,23 @@ namespace EngineBay.DemoApi
             return dbContexts;
         }
 
-        private static IEnumerable<IModule> GetRegisteredModules()
+        private static ReadOnlyCollection<IModule> GetRegisteredModules()
         {
             var modules = new List<IModule>
             {
-                new DemoApiModule(),
                 new PersistenceModule(),
                 new DatabaseManagementModule(),
+                new DemoApiModule(),
+                new DemoModuleModule(),
                 new ApiDocumentationModule(),
                 new LoggingModule(),
                 new CorsModule(),
                 new AuthenticationModule(),
                 new AuditingModule(),
-                new DemoModuleModule(),
             };
 
             Console.WriteLine($"Discovered {modules.Count} EngineBay modules");
-            return modules;
+            return new ReadOnlyCollection<IModule>(modules);
         }
     }
 }
