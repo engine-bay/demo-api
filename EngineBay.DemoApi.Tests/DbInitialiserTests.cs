@@ -74,10 +74,10 @@ namespace EngineBay.DemoApi.Tests
             Environment.SetEnvironmentVariable(EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER, DatabaseProviderTypes.SQLite.ToString());
             Environment.SetEnvironmentVariable(EngineBay.DatabaseManagement.EnvironmentVariableConstants.DATABASESEEDDATAPATH, DefaultSeedingConstants.DefaultSeedDataPath);
 
-            await masterDb.DisposeAsync().ConfigureAwait(false);
-            await masterSqliteDb.DisposeAsync().ConfigureAwait(false);
-            await masterSqlServerDb.DisposeAsync().ConfigureAwait(false);
-            await masterPostgresDb.DisposeAsync().ConfigureAwait(false);
+            await masterDb.DisposeAsync();
+            await masterSqliteDb.DisposeAsync();
+            await masterSqlServerDb.DisposeAsync();
+            await masterPostgresDb.DisposeAsync();
         }
 
         [Fact]
@@ -141,10 +141,10 @@ namespace EngineBay.DemoApi.Tests
             Environment.SetEnvironmentVariable(EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER, DatabaseProviderTypes.SQLite.ToString());
             Environment.SetEnvironmentVariable(EngineBay.DatabaseManagement.EnvironmentVariableConstants.DATABASESEEDDATAPATH, DefaultSeedingConstants.DefaultSeedDataPath);
 
-            await masterDb.DisposeAsync().ConfigureAwait(false);
-            await masterSqliteDb.DisposeAsync().ConfigureAwait(false);
-            await masterSqlServerDb.DisposeAsync().ConfigureAwait(false);
-            await masterPostgresDb.DisposeAsync().ConfigureAwait(false);
+            await masterDb.DisposeAsync();
+            await masterSqliteDb.DisposeAsync();
+            await masterSqlServerDb.DisposeAsync();
+            await masterPostgresDb.DisposeAsync();
         }
     }
 }

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS base
 
 ARG VERSION=0.0.0
 
@@ -14,7 +14,7 @@ COPY .editorconfig .editorconfig
 RUN dotnet publish ./EngineBay.DemoApi/EngineBay.DemoApi.csproj --nologo --runtime linux-musl-x64 --self-contained --configuration Release -o /tmp/build/out /p:Version=$VERSION
 
 # build runtime image
-FROM mcr.microsoft.com/dotnet/runtime-deps:7.0-alpine
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-alpine
 RUN apk add icu-libs
 COPY --from=base /tmp/build/out /usr/local/sbin
 
