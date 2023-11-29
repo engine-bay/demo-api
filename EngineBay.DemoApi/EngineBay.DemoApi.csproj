@@ -38,7 +38,7 @@
         </When>
         <Otherwise>
             <ItemGroup>
-                <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.0" />
+                <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.1" />
                 <PackageReference Include="EngineBay.DatabaseManagement" Version="5.0.1" />
                 <PackageReference Include="EngineBay.Cors" Version="2.0.0" />
                 <PackageReference Include="EngineBay.DemoModule" Version="1.0.1" />

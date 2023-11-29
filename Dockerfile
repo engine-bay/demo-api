@@ -20,6 +20,5 @@ COPY --from=base /tmp/build/out /usr/local/sbin
 
 EXPOSE 5051
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
-ENV ASPNETCORE_ENVIRONMENT=Development
 RUN mkdir /seed-data
 ENTRYPOINT ["EngineBay.DemoApi"]

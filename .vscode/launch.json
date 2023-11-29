@@ -16,9 +16,7 @@
       "stopAtEntry": false,
       "envFile": "${workspaceFolder}/.env",
       "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASE_PROVIDER": "SqlServer",
-        "DATABASE_CONNECTION_STRING": "data source=localhost\\sql1,1433;Database=sonarCMS;User Id=sa;Password=Highway1!Progress;Encrypt=False;"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"

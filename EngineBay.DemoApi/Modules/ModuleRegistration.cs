@@ -100,14 +100,14 @@ namespace EngineBay.DemoApi
             var modules = new List<IModule>
             {
                 new PersistenceModule(),
-                new DemoApiModule(),
                 new DatabaseManagementModule(),
+                new DemoApiModule(),
                 new DemoModuleModule(),
+                new ApiDocumentationModule(),
                 new LoggingModule(),
                 new CorsModule(),
-                new AuditingModule(),
-                new ApiDocumentationModule(),
                 new AuthenticationModule(),
+                new AuditingModule(),
             };
 
             Console.WriteLine($"Discovered {modules.Count} EngineBay modules");
