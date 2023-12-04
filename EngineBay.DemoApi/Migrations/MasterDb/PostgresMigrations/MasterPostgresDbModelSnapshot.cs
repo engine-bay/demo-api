@@ -17,7 +17,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("ProductVersion", "7.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -170,6 +170,9 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Groups", (string)null);
                 });
 
@@ -196,6 +199,9 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Permissions", (string)null);
                 });
@@ -226,6 +232,9 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Roles", (string)null);
                 });

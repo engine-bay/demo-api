@@ -105,7 +105,8 @@ namespace EngineBay.DemoApi
 
                     break;
                 default:
-                    throw new ArgumentException($"Unhandled {EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER} configuration of '{databaseProvider}'.");
+                    throw new ArgumentException(
+                        $"Unhandled {EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER} configuration of '{databaseProvider}'.");
             }
         }
 
@@ -138,7 +139,8 @@ namespace EngineBay.DemoApi
 
                     break;
                 default:
-                    throw new ArgumentException($"Unhandled {EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER} configuration of '{databaseProvider}'.");
+                    throw new ArgumentException(
+                        $"Unhandled {EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER} configuration of '{databaseProvider}'.");
             }
 
             this.logger.DatabaseMigrationsComplete();
@@ -162,7 +164,8 @@ namespace EngineBay.DemoApi
                     this.masterPostgresDb.Database.EnsureDeleted();
                     break;
                 default:
-                    throw new ArgumentException($"Unhandled {EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER} configuration of '{databaseProvider}'.");
+                    throw new ArgumentException(
+                        $"Unhandled {EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER} configuration of '{databaseProvider}'.");
             }
         }
     }
