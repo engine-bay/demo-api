@@ -2,6 +2,6 @@
   {
     "Id": "dcbc911e-977d-484c-8ed3-13643bf76c29",
     "Name": "Admin",
-    "Groups": [ "Modify", "View" ]
+    "GroupNames": [ "Modify", "View" ]
   }
 ]
