@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EngineBay.DemoApi.Migrations.MasterDb.SqlServerMigrations
 {
     [DbContext(typeof(MasterSqlServerDb))]
-    [Migration("20231204103446_UpdatePermissions")]
-    partial class UpdatePermissions
+    [Migration("20231207142005_AddAuthzModels")]
+    partial class AddAuthzModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

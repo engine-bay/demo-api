@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
 {
     [DbContext(typeof(MasterSqliteDb))]
-    [Migration("20231204103441_UpdatePermissions")]
-    partial class UpdatePermissions
+    [Migration("20231207141959_AddAuthzModels")]
+    partial class AddAuthzModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

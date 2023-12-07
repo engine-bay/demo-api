@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EngineBay.DemoApi.Migrations.MasterDb.PostgresMigrations
 {
     [DbContext(typeof(MasterPostgresDb))]
-    [Migration("20231204103451_UpdatePermissions")]
-    partial class UpdatePermissions
+    [Migration("20231207142011_AddAuthzModels")]
+    partial class AddAuthzModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
