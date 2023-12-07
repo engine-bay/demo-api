@@ -15,7 +15,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
 
             modelBuilder.Entity("AuthUserRole", b =>
                 {
@@ -165,6 +165,9 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Groups", (string)null);
                 });
 
@@ -191,6 +194,9 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Permissions", (string)null);
                 });
@@ -221,6 +227,9 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Roles", (string)null);
                 });
