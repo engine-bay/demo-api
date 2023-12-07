@@ -3,6 +3,7 @@ namespace EngineBay.DemoApi.Tests
     using EngineBay.Core;
     using EngineBay.DatabaseManagement;
     using EngineBay.Persistence;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
@@ -55,13 +56,16 @@ namespace EngineBay.DemoApi.Tests
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
+            var httpContextAccessor = new HttpContextAccessor();
+
             var initialiser = new DbInitialiser(
                 logger,
                 masterDb,
                 masterSqliteDb,
                 masterSqlServerDb,
                 masterPostgresDb,
-                serviceProvider);
+                serviceProvider,
+                httpContextAccessor);
 
             var modules = new List<IModule>();
 
@@ -124,13 +128,16 @@ namespace EngineBay.DemoApi.Tests
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
+            var httpContextAccessor = new HttpContextAccessor();
+
             var initialiser = new DbInitialiser(
                 logger,
                 masterDb,
                 masterSqliteDb,
                 masterSqlServerDb,
                 masterPostgresDb,
-                serviceProvider);
+                serviceProvider,
+                httpContextAccessor);
 
             var modules = new List<IModule>();
 

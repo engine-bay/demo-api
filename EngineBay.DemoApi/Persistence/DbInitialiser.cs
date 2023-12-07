@@ -1,5 +1,6 @@
 namespace EngineBay.DemoApi
 {
+    using System.Security.Claims;
     using EngineBay.Authentication;
     using EngineBay.Core;
     using EngineBay.DatabaseManagement;
@@ -17,13 +18,16 @@ namespace EngineBay.DemoApi
 
         private readonly IServiceProvider serviceProvider;
 
+        private readonly IHttpContextAccessor httpContextAccessor;
+
         public DbInitialiser(
             ILogger<DbInitialiser> logger,
             MasterDb masterDb,
             MasterSqliteDb masterSqliteDb,
             MasterSqlServerDb masterSqlServerDb,
             MasterPostgresDb masterPostgresDb,
-            IServiceProvider serviceProvider)
+            IServiceProvider serviceProvider,
+            IHttpContextAccessor httpContextAccessor)
         {
             this.logger = logger;
             this.masterDb = masterDb;
@@ -31,6 +35,7 @@ namespace EngineBay.DemoApi
             this.masterSqlServerDb = masterSqlServerDb;
             this.masterPostgresDb = masterPostgresDb;
             this.serviceProvider = serviceProvider;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         public void Run(IEnumerable<IModule> modules)
@@ -63,7 +68,7 @@ namespace EngineBay.DemoApi
             {
                 this.logger.CreatingRootSystemUser();
 
-                this.AddSystemUser(databaseProvider);
+                var systemUser = this.AddSystemUser(databaseProvider);
 
                 this.logger.SeedingDatabase();
 
@@ -71,6 +76,7 @@ namespace EngineBay.DemoApi
 
                 var enumerable = modules as IModule[] ?? modules.ToArray();
 
+                this.LoginAsSystemUser(systemUser);
                 foreach (var module in enumerable)
                 {
                     module.SeedDatabase(seedDataPath, this.serviceProvider);
@@ -85,7 +91,21 @@ namespace EngineBay.DemoApi
             }
         }
 
-        private void AddSystemUser(DatabaseProviderTypes databaseProvider)
+        private void LoginAsSystemUser(SystemUser systemUser)
+        {
+            var claims = new List<Claim>
+                {
+                    new Claim(CustomClaimTypes.Name, systemUser.Username),
+                    new Claim(CustomClaimTypes.UserId, systemUser.Id.ToString()),
+                };
+            var identity = new ClaimsIdentity(claims, "SeedAuthType");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+
+            this.httpContextAccessor.HttpContext ??= new DefaultHttpContext();
+            this.httpContextAccessor.HttpContext.User = claimsPrincipal;
+        }
+
+        private SystemUser AddSystemUser(DatabaseProviderTypes databaseProvider)
         {
             var systemUser = new SystemUser();
             switch (databaseProvider)
@@ -107,6 +127,8 @@ namespace EngineBay.DemoApi
                 default:
                     throw new ArgumentException($"Unhandled {EngineBay.Persistence.EnvironmentVariableConstants.DATABASEPROVIDER} configuration of '{databaseProvider}'.");
             }
+
+            return systemUser;
         }
 
         private void ApplyMigrations(DatabaseProviderTypes databaseProvider)
