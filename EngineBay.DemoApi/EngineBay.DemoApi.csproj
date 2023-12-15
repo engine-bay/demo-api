@@ -43,8 +43,8 @@
                 <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.4" />
                 <PackageReference Include="EngineBay.DatabaseManagement" Version="5.0.2" />
                 <PackageReference Include="EngineBay.Cors" Version="2.0.1" />
-                <PackageReference Include="EngineBay.DemoModule" Version="1.0.3" />
-                <PackageReference Include="EngineBay.RateLimitingModule" Version="0.0.1" />
+                <PackageReference Include="EngineBay.DemoModule" Version="1.0.4" />
+                <PackageReference Include="EngineBay.RateLimitingModule" Version="0.0.3" />
             </ItemGroup>
         </Otherwise>
     </Choose>
