@@ -27,10 +27,15 @@
     <Choose>
         <When Condition="'$(ASPNETCORE_ENVIRONMENT)' == 'Development'">
             <ItemGroup>
-                <ProjectReference Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
-                <ProjectReference Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
+                <ProjectReference
+                    Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
+                <ProjectReference
+                    Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
                 <ProjectReference Include="../../cors/EngineBay.Cors/EngineBay.Cors.csproj" />
-                <ProjectReference Include="../../demo-module/EngineBay.DemoModule/EngineBay.DemoModule.csproj" />
+                <ProjectReference
+                    Include="../../demo-module/EngineBay.DemoModule/EngineBay.DemoModule.csproj" />
+                <ProjectReference
+                    Include="../../rate-limiting/EngineBay.RateLimiting/EngineBay.RateLimiting.csproj" />
             </ItemGroup>
         </When>
         <Otherwise>
@@ -38,7 +43,8 @@
                 <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.4" />
                 <PackageReference Include="EngineBay.DatabaseManagement" Version="5.0.2" />
                 <PackageReference Include="EngineBay.Cors" Version="2.0.1" />
-                <PackageReference Include="EngineBay.DemoModule" Version="1.0.3" />
+                <PackageReference Include="EngineBay.DemoModule" Version="1.0.4" />
+                <PackageReference Include="EngineBay.RateLimiting" Version="0.0.3" />
             </ItemGroup>
         </Otherwise>
     </Choose>

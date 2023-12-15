@@ -1,6 +1,7 @@
 namespace EngineBay.DemoApi
 {
     using System.Net;
+    using EngineBay.RateLimiting;
     using FluentValidation;
     using Microsoft.AspNetCore.Diagnostics;
 
@@ -32,6 +33,9 @@ namespace EngineBay.DemoApi
                             break;
                         case KeyNotFoundException:
                             context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                            break;
+                        case RequestRejectedException:
+                            context.Response.StatusCode = 418;
                             break;
                         default:
                             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
