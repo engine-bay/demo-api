@@ -30,8 +30,10 @@
                 <ProjectReference
                     Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
                 <ProjectReference
-                    Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
+                    Include="../../authentication/EngineBay.Authentication/EngineBay.Authentication.csproj" />
                 <ProjectReference Include="../../cors/EngineBay.Cors/EngineBay.Cors.csproj" />
+                <ProjectReference
+                    Include="../../database-management/EngineBay.DatabaseManagement/EngineBay.DatabaseManagement.csproj" />
                 <ProjectReference
                     Include="../../demo-module/EngineBay.DemoModule/EngineBay.DemoModule.csproj" />
                 <ProjectReference
@@ -40,18 +42,19 @@
         </When>
         <Otherwise>
             <ItemGroup>
-                <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.4" />
-                <PackageReference Include="EngineBay.DatabaseManagement" Version="5.0.2" />
-                <PackageReference Include="EngineBay.Cors" Version="2.0.1" />
-                <PackageReference Include="EngineBay.DemoModule" Version="1.0.4" />
-                <PackageReference Include="EngineBay.RateLimiting" Version="0.0.3" />
+                <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.5" />
+                <PackageReference Include="EngineBay.Authentication" Version="2.2.0" />
+                <PackageReference Include="EngineBay.Cors" Version="2.0.2" />
+                <PackageReference Include="EngineBay.DatabaseManagement" Version="5.0.3" />
+                <PackageReference Include="EngineBay.DemoModule" Version="1.0.5" />
+                <PackageReference Include="EngineBay.RateLimiting" Version="0.0.4" />
             </ItemGroup>
         </Otherwise>
     </Choose>
 
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="11.8.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
