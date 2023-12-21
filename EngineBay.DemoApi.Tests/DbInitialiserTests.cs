@@ -7,7 +7,7 @@ namespace EngineBay.DemoApi.Tests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Moq;
+    using NSubstitute;
     using Xunit;
 
     public class DbInitialiserTests
@@ -48,9 +48,7 @@ namespace EngineBay.DemoApi.Tests
 
             var path = SeedingConfiguration.GetSeedDataPath();
 
-            var loggerMock = new Mock<ILogger<DbInitialiser>>();
-
-            var logger = loggerMock.Object;
+            var logger = Substitute.For<ILogger<DbInitialiser>>();
 
             var serviceCollection = new ServiceCollection();
 
@@ -120,9 +118,7 @@ namespace EngineBay.DemoApi.Tests
 
             var path = SeedingConfiguration.GetSeedDataPath();
 
-            var loggerMock = new Mock<ILogger<DbInitialiser>>();
-
-            var logger = loggerMock.Object;
+            var logger = Substitute.For<ILogger<DbInitialiser>>();
 
             var serviceCollection = new ServiceCollection();
 
