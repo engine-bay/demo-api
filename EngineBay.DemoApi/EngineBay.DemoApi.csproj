@@ -28,7 +28,13 @@
         <When Condition="'$(ASPNETCORE_ENVIRONMENT)' == 'Development'">
             <ItemGroup>
                 <ProjectReference
+                    Include="../../core/EngineBay.Core/EngineBay.Core.csproj" />
+                <ProjectReference
+                    Include="../../persistence/EngineBay.Persistence/EngineBay.Persistence.csproj" />
+                <ProjectReference
                     Include="../../api-documentation/EngineBay.ApiDocumentation/EngineBay.ApiDocumentation.csproj" />
+                <ProjectReference
+                    Include="../../auditing/EngineBay.Auditing/EngineBay.Auditing.csproj" />
                 <ProjectReference
                     Include="../../authentication/EngineBay.Authentication/EngineBay.Authentication.csproj" />
                 <ProjectReference Include="../../cors/EngineBay.Cors/EngineBay.Cors.csproj" />
@@ -37,23 +43,29 @@
                 <ProjectReference
                     Include="../../demo-module/EngineBay.DemoModule/EngineBay.DemoModule.csproj" />
                 <ProjectReference
+                    Include="../../logging/EngineBay.Logging/EngineBay.Logging.csproj" />
+                <ProjectReference
                     Include="../../rate-limiting/EngineBay.RateLimiting/EngineBay.RateLimiting.csproj" />
             </ItemGroup>
         </When>
         <Otherwise>
             <ItemGroup>
-                <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.5" />
-                <PackageReference Include="EngineBay.Authentication" Version="2.2.1" />
-                <PackageReference Include="EngineBay.Cors" Version="2.0.2" />
-                <PackageReference Include="EngineBay.DatabaseManagement" Version="5.0.3" />
-                <PackageReference Include="EngineBay.DemoModule" Version="1.0.5" />
-                <PackageReference Include="EngineBay.RateLimiting" Version="0.0.4" />
+                <PackageReference Include="EngineBay.Core" Version="10.0.0" />
+                <PackageReference Include="EngineBay.Persistence" Version="7.0.1" />
+                <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.6" />
+                <PackageReference Include="EngineBay.Auditing" Version="1.0.12" />
+                <PackageReference Include="EngineBay.Authentication" Version="2.2.2" />
+                <PackageReference Include="EngineBay.Cors" Version="2.0.3" />
+                <PackageReference Include="EngineBay.DatabaseManagement" Version="5.0.4" />
+                <PackageReference Include="EngineBay.DemoModule" Version="1.0.6" />
+                <PackageReference Include="EngineBay.Logging" Version="3.1.4" />
+                <PackageReference Include="EngineBay.RateLimiting" Version="0.0.5" />
             </ItemGroup>
         </Otherwise>
     </Choose>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="11.8.1" />
+        <PackageReference Include="FluentValidation" Version="11.9.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
