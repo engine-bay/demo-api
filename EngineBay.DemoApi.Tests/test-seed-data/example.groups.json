@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Modify",
+    "Description": "Modify roles",
+    "PermissionNames": [ "Roles:Create", "Roles:Update", "Roles:Delete" ]
+  },
+  {
+    "Name": "View",
+    "Description": "Query and Get",
+    "PermissionNames": [
+      "Roles:Query",
+      "Roles:Get",
+      "Groups:Query",
+      "Groups:Get",
+      "Permissions:Query",
+      "Permissions:Get"
+    ]
+  }
+]
+
