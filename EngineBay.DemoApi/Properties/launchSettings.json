@@ -9,11 +9,17 @@
         "DATABASE_RESET": "true",
         "DATABASE_RESEED": "true",
         "DATABASE_PROVIDER": "SQLite",
-        "AUTHENTICATION_METHOD": "Basic",
+        "AUTHENTICATION_METHOD": "JwtBearer",
+        "AUTHENTICATION_SECRET": "DevSecret",
         "AUTHENTICATION_AUDIENCE": "http://localhost:5051",
         "AUTHENTICATION_ISSUER": "http://localhost:5051",
         "AUTHENTICATION_VALIDATE_ISSUER_SIGNING_KEY": "false",
-        "API_DOCUMENTATION_ENABLED": "true"
+        "AUTHENTICATION_VALIDATE_EXPIRY": "false",
+        "AUTHENTICATION_VALIDATE_AUDIENCE": "false",
+        "AUTHENTICATION_VALIDATE_ISSUER": "false",
+        "AUTHENTICATION_VALIDATE_SIGNED_TOKENS": "false",
+        "API_DOCUMENTATION_ENABLED": "true",
+        "LOGGING_LEVEL": "Trace"
       },
       "applicationUrl": "https://localhost:50254;http://localhost:50255"
     }

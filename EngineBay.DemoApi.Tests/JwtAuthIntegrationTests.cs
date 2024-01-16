@@ -9,14 +9,14 @@
     using EngineBay.Persistence;
     using Xunit;
 
-    [Collection(BasicCollection.BASICCOLLECTION)]
-    public class BasicAuthIntegrationTests
+    [Collection(JwtCollection.JWTCOLLECTION)]
+    public class JwtAuthIntegrationTests
     {
         private readonly IAlbaHost host;
         private readonly string sampleUserAuth;
-        private readonly string adminUserAuth = "Basic " + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("admin:admin"));
+        private readonly string adminUserAuth = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4ifQ._rmu_6xQ4fJ2WqPp_S9nzzfrBkENwLY8X8BJeqvx78s";
 
-        public BasicAuthIntegrationTests(BasicAuthFixture fixture)
+        public JwtAuthIntegrationTests(JwtAuthFixture fixture)
         {
             ArgumentNullException.ThrowIfNull(fixture);
             ArgumentNullException.ThrowIfNull(fixture.AlbaHost);
@@ -50,15 +50,11 @@
         }
 
         [Theory]
-        [InlineData("abc", "def")]
-        [InlineData("bobby", "tables")]
-        public async Task CreatingUserCanLoginAndWillBeAudited(string username, string password)
+        [InlineData("abc", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWJjIn0.lGHPhzraFFSxMfUI0UNVG91HObr28ehjdqOuUwtTOS0")]
+        [InlineData("bobby", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYm9iYnkifQ.zLQ4Q3fEMO3DCuDp0rMZtdANBop-4a-HrPLDrkxlYGw")]
+        public async Task CreatingUserCanLoginAndWillBeAudited(string username, string authHeader)
         {
-            var user = new CreateBasicAuthUserDto()
-            {
-                Username = username,
-                Password = password,
-            };
+            var user = new CreateUserDto(username);
 
             var registerResult = await this.host.Scenario(scenario =>
             {
@@ -72,8 +68,6 @@
             Assert.NotNull(registerOutput);
             Assert.True(registerOutput.Id > Guid.Empty);
             Assert.Equal(username, registerOutput.Username);
-
-            var authHeader = "Basic " + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(username + ":" + password));
 
             var userInfoResult = await this.host.Scenario(scenario =>
             {
@@ -95,19 +89,12 @@
 
             var auditOutput = await auditResult.ReadAsJsonAsync<PaginatedDto<AuditEntryDto>>();
             Assert.NotNull(auditOutput);
-            Assert.True(auditOutput.Total >= 2);
+            Assert.True(auditOutput.Total >= 1);
             Assert.Equal(1, auditOutput.Data.Count((entry) =>
             {
                 return entry.ActionType == DatabaseOperationConstants.INSERT &&
                 entry.EntityName == nameof(ApplicationUser) &&
                 Guid.Parse(entry.EntityId) == userInfoOutput.Id;
-            }));
-            Assert.Equal(1, auditOutput.Data.Count((entry) =>
-            {
-                return entry.ActionType == DatabaseOperationConstants.INSERT &&
-                entry.EntityName == nameof(BasicAuthCredential) &&
-                Guid.Parse(entry.EntityId) != userInfoOutput.Id &&
-                entry.Changes.Contains("\"ApplicationUserId\":\"" + userInfoOutput.Id + "\"", StringComparison.CurrentCulture);
             }));
         }
 

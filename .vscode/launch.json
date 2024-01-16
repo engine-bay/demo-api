@@ -16,7 +16,16 @@
       "stopAtEntry": false,
       "envFile": "${workspaceFolder}/.env",
       "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5051",
+        "DATABASE_RESET": "true",
+        "DATABASE_RESEED": "true",
+        "DATABASE_PROVIDER": "SQLite",
+        "AUTHENTICATION_METHOD": "Basic",
+        "AUTHENTICATION_AUDIENCE": "http://localhost:5051",
+        "AUTHENTICATION_ISSUER": "http://localhost:5051",
+        "AUTHENTICATION_VALIDATE_ISSUER_SIGNING_KEY": "false",
+        "API_DOCUMENTATION_ENABLED": "true"
       },
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
