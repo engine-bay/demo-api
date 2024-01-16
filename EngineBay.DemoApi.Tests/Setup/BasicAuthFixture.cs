@@ -10,13 +10,7 @@
         {
             Environment.SetEnvironmentVariable("DATABASE_RESET", "true");
             Environment.SetEnvironmentVariable("DATABASE_RESEED", "true");
-
-            // Environment.SetEnvironmentVariable("DATABASE_PROVIDER", "InMemory");
             Environment.SetEnvironmentVariable("DATABASE_PROVIDER", "SQLite");
-
-            // Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", "Data Source=:memory:");
-
-            // Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", "Data Source=BasicAuth;Mode=Memory");
             Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", "Data Source=BasicAuth.sqlite");
             Environment.SetEnvironmentVariable("AUTHENTICATION_METHOD", "Basic");
             Environment.SetEnvironmentVariable("AUTHENTICATION_VALIDATE_ISSUER_SIGNING_KEY", "false");

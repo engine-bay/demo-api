@@ -10,20 +10,14 @@
         {
             Environment.SetEnvironmentVariable("DATABASE_RESET", "true");
             Environment.SetEnvironmentVariable("DATABASE_RESEED", "true");
-
-            // Environment.SetEnvironmentVariable("DATABASE_PROVIDER", "InMemory");
             Environment.SetEnvironmentVariable("DATABASE_PROVIDER", "SQLite");
-
-            // Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", "Data Source=:memory:");
-
-            // Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", "Data Source=JwtAuth;Mode=Memory");
             Environment.SetEnvironmentVariable("DATABASE_CONNECTION_STRING", "Data Source=JwtAuth.sqlite");
             Environment.SetEnvironmentVariable("AUTHENTICATION_METHOD", "JwtBearer");
             Environment.SetEnvironmentVariable("AUTHENTICATION_SECRET", "TestSecret");
             Environment.SetEnvironmentVariable("AUTHENTICATION_VALIDATE_ISSUER_SIGNING_KEY", "false");
             Environment.SetEnvironmentVariable("AUTHENTICATION_VALIDATE_EXPIRY", "false");
-            Environment.SetEnvironmentVariable("AUTHENTICATION_VALIDATE_AUDIENCE", "false"); // TODO: test with this removed
-            Environment.SetEnvironmentVariable("AUTHENTICATION_VALIDATE_ISSUER", "false"); // TODO: test with this removed
+            Environment.SetEnvironmentVariable("AUTHENTICATION_VALIDATE_AUDIENCE", "false");
+            Environment.SetEnvironmentVariable("AUTHENTICATION_VALIDATE_ISSUER", "false");
             Environment.SetEnvironmentVariable("API_DOCUMENTATION_ENABLED", "true");
             Environment.SetEnvironmentVariable("DATABASE_SEED_DATA_PATH", "./test-seed-data");
 
