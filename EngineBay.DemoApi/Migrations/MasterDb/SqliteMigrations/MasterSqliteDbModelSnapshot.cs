@@ -15,22 +15,7 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
-
-            modelBuilder.Entity("AuthUserRole", b =>
-                {
-                    b.Property<Guid>("RolesId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("RolesId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("AuthUserRole");
-                });
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
             modelBuilder.Entity("EngineBay.Auditing.AuditEntry", b =>
                 {
@@ -71,35 +56,6 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     b.HasKey("Id");
 
                     b.ToTable("AuditEntries", (string)null);
-                });
-
-            modelBuilder.Entity("EngineBay.Authentication.AuthUser", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("ApplicationUserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("CreatedById")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LastUpdatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("LastUpdatedById")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
-
-                    b.ToTable("AuthUsers", (string)null);
                 });
 
             modelBuilder.Entity("EngineBay.Authentication.BasicAuthCredential", b =>
@@ -234,6 +190,35 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     b.ToTable("Roles", (string)null);
                 });
 
+            modelBuilder.Entity("EngineBay.Authentication.UserRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ApplicationUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LastUpdatedById")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("UserRoles", (string)null);
+                });
+
             modelBuilder.Entity("EngineBay.DemoModule.TodoItem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -353,30 +338,19 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     b.ToTable("GroupRole");
                 });
 
-            modelBuilder.Entity("AuthUserRole", b =>
+            modelBuilder.Entity("RoleUserRole", b =>
                 {
-                    b.HasOne("EngineBay.Authentication.Role", null)
-                        .WithMany()
-                        .HasForeignKey("RolesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("RolesId")
+                        .HasColumnType("TEXT");
 
-                    b.HasOne("EngineBay.Authentication.AuthUser", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("TEXT");
 
-            modelBuilder.Entity("EngineBay.Authentication.AuthUser", b =>
-                {
-                    b.HasOne("EngineBay.Persistence.ApplicationUser", "ApplicationUser")
-                        .WithOne()
-                        .HasForeignKey("EngineBay.Authentication.AuthUser", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasKey("RolesId", "UsersId");
 
-                    b.Navigation("ApplicationUser");
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("RoleUserRole");
                 });
 
             modelBuilder.Entity("EngineBay.Authentication.BasicAuthCredential", b =>
@@ -384,6 +358,17 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     b.HasOne("EngineBay.Persistence.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("EngineBay.Authentication.UserRole", b =>
+                {
+                    b.HasOne("EngineBay.Persistence.ApplicationUser", "ApplicationUser")
+                        .WithOne()
+                        .HasForeignKey("EngineBay.Authentication.UserRole", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -425,6 +410,21 @@ namespace EngineBay.DemoApi.Migrations.MasterDb.SqliteMigrations
                     b.HasOne("EngineBay.Authentication.Role", null)
                         .WithMany()
                         .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RoleUserRole", b =>
+                {
+                    b.HasOne("EngineBay.Authentication.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EngineBay.Authentication.UserRole", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

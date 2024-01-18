@@ -10,6 +10,8 @@ namespace EngineBay.DemoApi
             builder.Services.AddHttpContextAccessor();
 
             builder.Services.RegisterModules(builder.Configuration);
+            builder.Services.RegisterPolicies();
+
             builder.Services.AddHealthChecks();
 
             var app = builder.Build();
