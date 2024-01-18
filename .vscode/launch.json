@@ -16,7 +16,8 @@
       "stopAtEntry": false,
       "envFile": "${workspaceFolder}/.env",
       "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASE_SEED_DATA_PATH": "/bin/Debug/net8.0/seed-data"
       },
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
