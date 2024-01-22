@@ -12,6 +12,7 @@ namespace EngineBay.DemoApi
     using EngineBay.Logging;
     using EngineBay.Persistence;
     using EngineBay.RateLimiting;
+    using EngineBay.Telemetry;
     using Microsoft.EntityFrameworkCore;
 
     public static class ModuleRegistration
@@ -110,6 +111,7 @@ namespace EngineBay.DemoApi
                 new AuthenticationModule(),
                 new AuditingModule(),
                 new RateLimitingModule(),
+                new TelemetryModule(),
             };
 
             Console.WriteLine($"Discovered {modules.Count} EngineBay modules");
