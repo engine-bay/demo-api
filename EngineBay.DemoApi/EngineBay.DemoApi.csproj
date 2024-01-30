@@ -46,6 +46,7 @@
                     Include="../../logging/EngineBay.Logging/EngineBay.Logging.csproj" />
                 <ProjectReference
                     Include="../../rate-limiting/EngineBay.RateLimiting/EngineBay.RateLimiting.csproj" />
+				<ProjectReference Include="../../telemetry/EngineBay.Telemetry/EngineBay.Telemetry.csproj" />
             </ItemGroup>
         </When>
         <Otherwise>
@@ -60,6 +61,7 @@
                 <PackageReference Include="EngineBay.DemoModule" Version="1.0.7" />
                 <PackageReference Include="EngineBay.Logging" Version="3.1.4" />
                 <PackageReference Include="EngineBay.RateLimiting" Version="0.0.5" />
+                <PackageReference Include="EngineBay.Telemetry" Version="0.2.0" />
             </ItemGroup>
         </Otherwise>
     </Choose>
