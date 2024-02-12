@@ -11,9 +11,9 @@ namespace EngineBay.DemoApi
         {
         }
 
-        protected override IReadOnlyCollection<IModuleDbContext> GetRegisteredDbContexts(DbContextOptions<ModuleWriteDbContext> dbOptions)
+        protected override IReadOnlyCollection<IModuleDbContext> GetRegisteredDbContexts(IDbContextOptionsFactory dbContextOptionsFactory)
         {
-            return ModuleRegistration.GetRegisteredDbContexts(dbOptions);
+            return ModuleRegistration.GetRegisteredDbContexts(dbContextOptionsFactory);
         }
     }
 }

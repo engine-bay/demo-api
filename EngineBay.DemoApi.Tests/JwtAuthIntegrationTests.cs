@@ -83,7 +83,7 @@
 
             var auditResult = await this.host.Scenario(scenario =>
             {
-                scenario.Get.Url("/api/v1/audit-entries");
+                scenario.Get.Url("/api/v1/audit-entries?limit=100");
                 scenario.StatusCodeShouldBeOk();
             });
 
