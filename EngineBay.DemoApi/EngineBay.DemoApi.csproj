@@ -46,7 +46,8 @@
                     Include="../../logging/EngineBay.Logging/EngineBay.Logging.csproj" />
                 <ProjectReference
                     Include="../../rate-limiting/EngineBay.RateLimiting/EngineBay.RateLimiting.csproj" />
-				<ProjectReference Include="../../telemetry/EngineBay.Telemetry/EngineBay.Telemetry.csproj" />
+                <ProjectReference
+                    Include="../../telemetry/EngineBay.Telemetry/EngineBay.Telemetry.csproj" />
             </ItemGroup>
         </When>
         <Otherwise>
@@ -55,7 +56,7 @@
                 <PackageReference Include="EngineBay.Persistence" Version="8.0.0" />
                 <PackageReference Include="EngineBay.ApiDocumentation" Version="2.0.7" />
                 <PackageReference Include="EngineBay.Auditing" Version="1.1.0" />
-                <PackageReference Include="EngineBay.Authentication" Version="2.3.0" />
+                <PackageReference Include="EngineBay.Authentication" Version="2.4.0" />
                 <PackageReference Include="EngineBay.Cors" Version="2.0.3" />
                 <PackageReference Include="EngineBay.DatabaseManagement" Version="5.1.0" />
                 <PackageReference Include="EngineBay.DemoModule" Version="1.1.0" />
